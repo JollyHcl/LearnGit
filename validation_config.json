@@ -1,0 +1,66 @@
+{
+  "database": {
+    "mysql": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "your_username",
+      "password": "your_password",
+      "database": "your_database",
+      "charset": "utf8mb4"
+    },
+    "postgresql": {
+      "host": "localhost",
+      "port": 5432,
+      "user": "your_username",
+      "password": "your_password",
+      "database": "your_database"
+    },
+    "sqlite": {
+      "database": "your_database.db"
+    }
+  },
+  
+  "table_config": {
+    "table_name": "your_table_name",
+    "columns": {
+      "risk_time": "risk_time",
+      "pred_score": "pred_score"
+    }
+  },
+  
+  "validation_params": {
+    "tolerance": 0.01,
+    "bin_count": 10,
+    "base_days": 6,
+    "analysis_days": 100,
+    "sample_size": null
+  },
+  
+  "output": {
+    "save_results": true,
+    "output_file": "validation_results.csv",
+    "report_file": "validation_report.txt",
+    "detailed_log": true
+  },
+  
+  "test_scenarios": [
+    {
+      "name": "基本一致性测试",
+      "description": "验证SQL和Python处理结果的基本一致性",
+      "tolerance": 0.01,
+      "expected_consistency": 99.0
+    },
+    {
+      "name": "分箱边界测试",
+      "description": "验证分箱边界计算的准确性",
+      "tolerance": 0.001,
+      "expected_consistency": 100.0
+    },
+    {
+      "name": "异常值处理测试",
+      "description": "验证-9999异常值的处理一致性",
+      "focus": "异常值分箱",
+      "expected_consistency": 100.0
+    }
+  ]
+}
